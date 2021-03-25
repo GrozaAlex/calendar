@@ -10,17 +10,17 @@
   </head>
   <body>
     <div class="calendar">
-      <div class="header">
-        <h1>Calendar</h1>
-        <div class="buttons">
-          <select name="members">
+      <div class="calendar__header">
+        <h1 class="calendar__title">Calendar</h1>
+        <div class="calendar__buttons">
+          <select class="calendar__select" name="members">
             <option value="">All members</option>
           </select>
-          <button>New event +</button>
+          <a class="calendar__btn" href="create-event.html">New event +</a>
         </div>
       </div>
-      <div class="table">
-        <table>
+      <div class="calendar__table">
+        <table id="calendar">
           <thead>
             <tr>
               <th>Name</th>
@@ -107,33 +107,6 @@
           </tbody>
         </table>
       </div>
-    </div>
-
-    <div class="form__wrapper">
-      <form action="#" method="POST">
-        <div class="form__input">
-          <div class="form__row">
-            <label for="Name">Name of the event:</label>
-            <input type="text" name="event" id="Name" />
-          </div>
-          <div class="form__row">
-            <label for="Participant">Participants:</label>
-            <input type="text" name="participant" id="Participant" />
-          </div>
-          <div class="form__row">
-            <label for="Day">Day:</label>
-            <input type="date" name="day" id="Day" />
-          </div>
-          <div class="form__row">
-            <label for="Time">Time:</label>
-            <input type="time" name="time" id="Time" />
-          </div>
-        </div>
-        <div class="form__btn">
-          <button>Cancel</button>
-          <button type="submit">Create</button>
-        </div>
-      </form>
     </div>
     <script src="js/main.js"></script>
   </body>

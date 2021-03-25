@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="form">
+      <div class="form__body">
+        <form id="form-new-event">
+          <div class="form__wrapper">
+            <div class="form__row">
+              <label for="Name">Name of the event:</label>
+              <input class="form_input" type="text" name="event" id="Name" />
+            </div>
+            <div class="form__row">
+              <label for="Participant">Participants:</label>
+              <input class="form_input" type="text" name="participant" id="Participant" />
+            </div>
+            <div class="form__row">
+              <label for="Day">Day:</label>
+              <select class="form_input" name="day" id="Day">
+                <option value="">Day</option>
+                <option value="mon">Monday</option>
+                <option value="tur">Tuesday</option>
+                <option value="wed">Wednesday</option>
+                <option value="thu">Thursday</option>
+                <option value="fri">Friday</option>
+              </select>
+            </div>
+            <div class="form__row">
+              <label for="Time">Time:</label>
+              <select class="form_input" name="time" id="Time">
+                <option value="">Time</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form__buttons">
+            <a class="form__btn" href="index.html">Cancel</a>
+            <button class="form__btn" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>
