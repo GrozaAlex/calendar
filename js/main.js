@@ -1,35 +1,63 @@
-const events = [{
-nameOfEvent: "test", 
-member: "Alex",
-day: "fri",
-time: "12:00",},
-{nameOfEvent: "test", 
-    member: "Alex",
-    day: "mon",
-    time: "12:00",},{
-        nameOfEvent: "test", 
-        member: "Alex",
-        day: "wed",
-        time: "11:00",},];
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#form");
 
-function renderSinglEvent(){
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-}
+      const event = form.querySelector('[name="event"]');
+      const participant = form.querySelector('[name="participant"]');
+      const day = form.querySelector('[name="day"]');
+      const time = form.querySelector('[name="time"]');
+      const id = Date.now();
 
-function renderEvents(){
+      const eventObj = {
+        event: event.value,
+        participant: participant.value,
+        day: day.value,
+        time: time.value,
+        id: id,
+      };
+
+      const data = JSON.parse(localStorage.getItem("events"));
+      const eventsList = data ? data : [];
+
+      localStorage.setItem("events", JSON.stringify([...eventsList, eventObj]));
+      window.history.back();
+    });
+  }
+
+  function renderEvents() {
     const calendarContainer = document.querySelector("#calendar");
-    events.forEach((i) => { 
-        const cell = calendarContainer.querySelector(`td[data-day='${i.day}'][data-time='${i.time}']`);
-        cell.innerHTML = i.nameOfEvent;
-    })
-}
+    const membersSelect = document.querySelector("#members");
+    const data = JSON.parse(localStorage.getItem("events"));
+      data.forEach((i) => {
+      const cell = calendarContainer.querySelector(`td[data-day='${i.day}'][data-time='${i.time}']`);
+      cell.innerHTML = `<span id='active-event' data-id='${i.id}'><p>${i.event}</p><span class="close"></span></span>`;
+      cell.classList.add("active__cell");
 
-renderEvents();
+      const addMembers = new Option(i.participant, i.participant);
+      membersSelect.add(addMembers, undefined);
+    });
+  }
+  renderEvents();
 
-// function createNewEvent(form){
-//     console.log(form)
-// }
+  const eventCell = document.querySelectorAll(".event-cell");
+  eventCell.forEach( (i) => {
+    i.addEventListener("click", function (e) {
+      if (e.target.classList.contains('close')) {
+          this.remove();
+      }
 
-// document.querySelector("#form-new-event").addEventListener("submit", function(e){
-//     console.log(e)
-// });
+      const data = JSON.parse(localStorage.getItem("events"));
+      const filtered = data.filter( (i) => {
+        const cellItem = document.querySelector(`#active-event`);
+          if (i.id !== parseInt(cellItem.dataset.id)) {
+            console.log(parseInt(cellItem.dataset.id));
+            return i;
+          };
+      });
+      localStorage.setItem("events", JSON.stringify(filtered));
+    });
+  });
+});
